@@ -1,13 +1,15 @@
-<div class="row">
+<form class="row" (ngSubmit)="emit()">
     <div class="col-md-4">
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <input type="text" class="form-control" id="description" placeholder="Description...">
+            <input type="text" [(ngModel)]="brand.description" name="description" class="form-control" id="description" placeholder="Description...">
         </div>
         <div class="mb-3">
-            <button type="button" class="btn btn-success">Agregar</button>
+            <button type="submit" class="btn btn-success">Agregar</button>
         </div>
     </div>
-</div>
+</form>
+
+
 
   

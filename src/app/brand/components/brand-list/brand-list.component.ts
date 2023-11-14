@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Brand } from '../../interfaces/brand.interface';
 
 @Component({
   selector: 'app-brand-list',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './brand-list.component.css'
 })
 export class BrandListComponent {
+
+  @Input()
+  public brands: Brand[] = []
 
 }

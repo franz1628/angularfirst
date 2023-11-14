@@ -4,14 +4,25 @@ import { BrandListComponent } from './components/brand-list/brand-list.component
 import { BrandFormComponent } from './components/brand-form/brand-form.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrandPagesComponent } from './pages/brand-pages/brand-pages.component';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [BrandListComponent,BrandPagesComponent, BrandFormComponent, BrandListComponent],
+  declarations: [
+    BrandListComponent,
+    BrandPagesComponent,
+    BrandFormComponent,
+    BrandListComponent],
   imports: [
-    CommonModule,BrowserModule
+    CommonModule, 
+    BrowserModule,
+    FormsModule
   ],
-  exports:[BrandPagesComponent, BrandFormComponent, BrandListComponent]
+  exports: [
+    BrandPagesComponent,
+    BrandFormComponent,
+    BrandListComponent
+  ]
 })
 export class BrandModule { }
