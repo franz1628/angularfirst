@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Brand } from '../../interfaces/brand.interface';
 
 @Component({
@@ -11,4 +11,10 @@ export class BrandListComponent {
   @Input()
   public brands: Brand[] = []
 
+  @Output() delete:EventEmitter<number> = new EventEmitter();
+  emitDelete(id:number):void{
+    console.log(id);
+    
+    this.delete.emit(id)
+  }
 }

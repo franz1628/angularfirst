@@ -19,15 +19,18 @@ export class BrandService {
     ]
 
     public add(brand:Brand){
-        console.log(brand);
-        
         this.brands.push({
-            id:3,
+            id:this.brands.length+1,
             description:brand.description,
             created_at:new Date(),
             updated_at:new Date()
         })
         console.log(this.brands);
-        
     }
+
+    public delete(id:number){
+        console.log(id);
+        
+        this.brands = this.brands.filter(x=>x.id!=id)
+    }   
 }

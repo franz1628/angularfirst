@@ -4,13 +4,24 @@
         <tr>
             <th>#</th>
             <th>Description</th>
+            <th>Action</th>
         </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let brand of brands">
-            <td>{{brand.id}}</td>
-            <td>{{brand.description}}</td>
-        </tr>
+        <ng-container *ngIf="brands.length > 0; else noRecords">
+            <tr *ngFor="let brand of brands">
+                <td>{{brand.id}}</td>
+                <td>{{brand.description}}</td>
+                <td>
+                    <button class="btn btn-danger" type="button" (click)="emitDelete(brand.id)">Delete</button>
+                </td>
+            </tr>
+        </ng-container>
+        <ng-template #noRecords>
+            <tr>
+                <td colspan="3" class="text-center">No records found.</td>
+            </tr>
+        </ng-template>
     </tbody>
 </table>

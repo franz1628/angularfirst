@@ -18,8 +18,11 @@ export class BrandPagesComponent {
     }
 
     add(brand:Brand){
-       
         this.brandService.add(brand)
+    }
+
+    delete(id:number){
+        this.brandService.delete(id)
     }
 
 }
