@@ -1,0 +1,30 @@
+
+<div class="row">
+    <div class="col-md-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngIf="designs.length > 0; else noRecords">
+                    <tr *ngFor="let design of designs">
+                        <td>{{design.id}}</td>
+                        <td>{{design.description}}</td>
+                        <td>
+                            <button class="btn btn-danger" type="button" (click)="emitDelete(design.id)">Delete</button>
+                        </td>
+                    </tr>
+                </ng-container>
+                <ng-template #noRecords>
+                    <tr>
+                        <td colspan="3" class="text-center">No records found.</td>
+                    </tr>
+                </ng-template>
+            </tbody>
+        </table>
+    </div>
+</div>

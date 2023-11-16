@@ -7,6 +7,10 @@ import { CounterComponent } from './counter/counter.component';
 import { CommonModule } from '@angular/common';
 import { BrandListComponent } from './brand/components/brand-list/brand-list.component';
 import { BrandModule } from './brand/brand.module';
+import { DesignListComponent } from './design/components/design-list/design-list.component';
+import { DesignFormComponent } from './design/components/design-form/design-form.component';
+import { DesignPageComponent } from './design/pages/design-page/design-page.component';
+import { DesignModule } from './design/design.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,8 @@ import { BrandModule } from './brand/brand.module';
   ],
   imports: [
     AppRoutingModule,
-    BrandModule
+    BrandModule,
+    DesignModule
   ],
   providers: [],
   bootstrap: [AppComponent]
