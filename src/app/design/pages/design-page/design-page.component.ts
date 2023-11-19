@@ -4,8 +4,7 @@ import { DesignService } from '../../services/design.service';
 
 @Component({
   selector: 'app-design-page',
-  templateUrl: './design-page.component.html',
-  styleUrl: './design-page.component.css'
+  templateUrl: './design-page.component.html'
 })
 export class DesignPageComponent {
   constructor(public designService:DesignService){

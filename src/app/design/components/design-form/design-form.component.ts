@@ -3,8 +3,7 @@ import { Design } from '../../interfaces/design.interface';
 
 @Component({
   selector: 'app-design-form',
-  templateUrl: './design-form.component.html',
-  styleUrl: './design-form.component.css'
+  templateUrl: './design-form.component.html'
 })
 export class DesignFormComponent {
   public design : Design = {

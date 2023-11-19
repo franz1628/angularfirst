@@ -3,8 +3,7 @@ import { Brand } from '../../interfaces/brand.interface';
 
 @Component({
   selector: 'app-brand-form',
-  templateUrl: './brand-form.component.html',
-  styleUrl: './brand-form.component.css'
+  templateUrl: './brand-form.component.html'
 })
 export class BrandFormComponent {
   public brand: Brand = {

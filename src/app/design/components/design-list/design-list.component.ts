@@ -4,8 +4,7 @@ import { Design } from '../../interfaces/design.interface';
 
 @Component({
   selector: 'app-design-list',
-  templateUrl: './design-list.component.html',
-  styleUrl: './design-list.component.css'
+  templateUrl: './design-list.component.html'
 })
 export class DesignListComponent {
 

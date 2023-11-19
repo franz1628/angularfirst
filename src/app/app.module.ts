@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CounterComponent } from './counter/counter.component';
 import { CommonModule } from '@angular/common';
 import { BrandListComponent } from './brand/components/brand-list/brand-list.component';
 import { BrandModule } from './brand/brand.module';
@@ -11,6 +10,7 @@ import { DesignListComponent } from './design/components/design-list/design-list
 import { DesignFormComponent } from './design/components/design-form/design-form.component';
 import { DesignPageComponent } from './design/pages/design-page/design-page.component';
 import { DesignModule } from './design/design.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { DesignModule } from './design/design.module';
   imports: [
     AppRoutingModule,
     BrandModule,
-    DesignModule
+    DesignModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

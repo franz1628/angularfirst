@@ -3,8 +3,7 @@ import { Brand } from '../../interfaces/brand.interface';
 
 @Component({
   selector: 'app-brand-list',
-  templateUrl: './brand-list.component.html',
-  styleUrl: './brand-list.component.css'
+  templateUrl: './brand-list.component.html'
 })
 export class BrandListComponent {
 

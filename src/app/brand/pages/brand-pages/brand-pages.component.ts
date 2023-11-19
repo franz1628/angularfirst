@@ -4,8 +4,7 @@ import { BrandService } from '../../services/brand.service';
 
 @Component({
     selector: 'app-brand-pages',
-    templateUrl: './brand-pages.component.html',
-    styleUrl: './brand-pages.component.css'
+    templateUrl: './brand-pages.component.html'
 })
 export class BrandPagesComponent {
  
