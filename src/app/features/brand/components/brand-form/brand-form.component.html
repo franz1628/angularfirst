@@ -1,11 +1,50 @@
 <form (ngSubmit)="onSave()">
-    <div class="mb-4">
-        <label for="description" class="form-label text-uppercase small tracking-wider">Brand Presence</label>
-        <input type="text" [(ngModel)]="brand.description" name="description" class="form-control" id="description" placeholder="Brand name or tagline...">
+    <div class="row">
+        <div class="col-md-8 mb-4">
+            <label for="name" class="form-label text-uppercase small tracking-wider">Manufacturer Name</label>
+            <input type="text" [(ngModel)]="brand.name" name="name" class="form-control" id="name" placeholder="e.g. Aston Martin Lagonda">
+        </div>
+        <div class="col-md-4 mb-4">
+            <label for="foundedYear" class="form-label text-uppercase small tracking-wider">Founded In</label>
+            <input type="number" [(ngModel)]="brand.foundedYear" name="foundedYear" class="form-control" id="foundedYear" placeholder="Year">
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <label for="headquarters" class="form-label text-uppercase small tracking-wider">Global Headquarters</label>
+            <input type="text" [(ngModel)]="brand.headquarters" name="headquarters" class="form-control" id="headquarters" placeholder="City, Country">
+        </div>
+        <div class="col-md-6 mb-4">
+            <label for="segment" class="form-label text-uppercase small tracking-wider">Market Segment</label>
+            <select [(ngModel)]="brand.segment" name="segment" class="form-control" id="segment">
+                <option value="">Select Segment...</option>
+                <option value="Supercars">Exotic / Supercars</option>
+                <option value="Luxury">Luxury / Executive</option>
+                <option value="Grand Tourer">Grand Tourer (GT)</option>
+                <option value="Electric">Electric Performance</option>
+                <option value="SUV">Performance SUV</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="heritage" class="form-label text-uppercase small tracking-wider">Legacy & Heritage</label>
+        <textarea [(ngModel)]="brand.heritage" name="heritage" class="form-control" id="heritage" rows="3" placeholder="Briefly describe the manufacturer's history..."></textarea>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mb-4 d-flex align-items-center">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="isActive" name="isActive" [(ngModel)]="brand.isActive">
+                <label class="form-check-label" for="isActive">Currently Active Operations</label>
+            </div>
+        </div>
+    </div>
+
     <div class="d-grid gap-2">
         <button type="submit" class="btn btn-primary-elite">
-            {{ brand.id > 0 ? 'Save Updates' : 'Add Brand' }}
+            {{ brand.id > 0 ? 'Update Manufacturer' : 'Register Manufacturer' }}
         </button>
     </div>
 </form>

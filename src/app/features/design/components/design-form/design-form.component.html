@@ -1,11 +1,64 @@
 <form (ngSubmit)="onSave()">
-    <div class="mb-4">
-        <label for="description" class="form-label text-uppercase small tracking-wider">Concept Blueprint</label>
-        <input type="text" [(ngModel)]="design.description" name="description" class="form-control" id="description" placeholder="Technical name or style...">
+    <div class="row">
+        <div class="col-md-9 mb-4">
+            <label for="modelName" class="form-label text-uppercase small tracking-wider">Model Designation</label>
+            <input type="text" [(ngModel)]="design.modelName" name="modelName" class="form-control" id="modelName" placeholder="e.g. 911 GT3 RS">
+        </div>
+        <div class="col-md-3 mb-4">
+            <label for="chassisCode" class="form-label text-uppercase small tracking-wider">ID / Chassis</label>
+            <input type="text" [(ngModel)]="design.chassisCode" name="chassisCode" class="form-control" id="chassisCode" placeholder="992">
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <label for="engineType" class="form-label text-uppercase small tracking-wider">Powertrain / Engine</label>
+            <input type="text" [(ngModel)]="design.engineType" name="engineType" class="form-control" id="engineType" placeholder="e.g. 4.0L Flat-6">
+        </div>
+        <div class="col-md-6 mb-4">
+            <label for="bodyStyle" class="form-label text-uppercase small tracking-wider">Body Silhouette</label>
+            <select [(ngModel)]="design.bodyStyle" name="bodyStyle" class="form-control" id="bodyStyle">
+                <option value="Coupe">Aerodynamic Coupe</option>
+                <option value="GT">Grand Tourer</option>
+                <option value="Hypercar">Track Hypercar</option>
+                <option value="SUV">Performance SUV</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <label for="horsepower" class="form-label text-uppercase small tracking-wider">Max Output (HP)</label>
+            <div class="input-group">
+                <input type="number" [(ngModel)]="design.horsepower" name="horsepower" class="form-control" id="horsepower">
+                <span class="input-group-text text-muted small">HP</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <label for="topSpeed" class="form-label text-uppercase small tracking-wider">Top Velocity</label>
+            <div class="input-group">
+                <input type="number" [(ngModel)]="design.topSpeed" name="topSpeed" class="form-control" id="topSpeed">
+                <span class="input-group-text text-muted small">km/h</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <label for="designer" class="form-label text-uppercase small tracking-wider">Lead Engineer</label>
+            <input type="text" [(ngModel)]="design.designer" name="designer" class="form-control" id="designer" placeholder="Master Designer">
+        </div>
+        <div class="col-md-6 mb-4 d-flex align-items-center pt-4">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="isProductionReady" name="isProductionReady" [(ngModel)]="design.isProductionReady">
+                <label class="form-check-label" for="isProductionReady">Homologated / Production Ready</label>
+            </div>
+        </div>
+    </div>
+
     <div class="d-grid gap-2">
         <button type="submit" class="btn btn-primary-elite">
-            {{ design.id > 0 ? 'Update Strategy' : 'Commit Strategy' }}
+            {{ design.id > 0 ? 'Update Engineering Specs' : 'Commit Engineering Blueprint' }}
         </button>
     </div>
 </form>

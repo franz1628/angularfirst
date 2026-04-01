@@ -8,7 +8,15 @@ import { Design } from '../../models/design.model';
 export class DesignFormComponent {
   @Input() public design: Design = {
     id: 0,
-    description: '',
+    modelName: '',
+    chassisCode: '',
+    engineType: '',
+    horsepower: 0,
+    topSpeed: 0,
+    bodyStyle: 'Coupe',
+    designer: '',
+    version: '1.0.0',
+    isProductionReady: false,
     state: 1,
     created_at: new Date()
   };
@@ -16,7 +24,7 @@ export class DesignFormComponent {
   @Output() public add = new EventEmitter<Design>();
 
   onSave(): void {
-    if (this.design.description.trim()) {
+    if (this.design.modelName.trim()) {
       this.add.emit(this.design);
     }
   }

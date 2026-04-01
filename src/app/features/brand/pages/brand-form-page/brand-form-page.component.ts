@@ -11,7 +11,12 @@ export class BrandFormPageComponent implements OnInit {
 
   public brand: Brand = {
     id: 0,
-    description: '',
+    name: '',
+    headquarters: '',
+    segment: '',
+    foundedYear: 2024,
+    heritage: '',
+    isActive: true,
     created_at: new Date(),
     updated_at: new Date()
   };

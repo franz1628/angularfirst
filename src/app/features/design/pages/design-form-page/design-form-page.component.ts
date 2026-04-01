@@ -11,7 +11,15 @@ export class DesignFormPageComponent implements OnInit {
 
   public design: Design = {
     id: 0,
-    description: '',
+    modelName: '',
+    chassisCode: '',
+    engineType: '',
+    horsepower: 0,
+    topSpeed: 0,
+    bodyStyle: 'Coupe',
+    designer: '',
+    version: '1.0.0',
+    isProductionReady: false,
     state: 1,
     created_at: new Date()
   };
