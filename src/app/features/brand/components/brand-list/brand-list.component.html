@@ -1,0 +1,36 @@
+<div class="table-container">
+    <table class="custom-table mb-0">
+        <thead>
+            <tr>
+                <th class="w-25">ID</th>
+                <th>Brand Description</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="brands.length > 0; else noRecords">
+                <tr *ngFor="let brand of brands">
+                    <td class="fw-bold text-primary opacity-75">#{{brand.id}}</td>
+                    <td class="fw-medium">{{brand.description}}</td>
+                    <td class="text-end">
+                        <div class="d-flex gap-2 justify-content-end">
+                            <button class="btn btn-outline-primary btn-sm rounded-pill px-3" type="button" (click)="onEdit(brand.id)">
+                                Edit
+                            </button>
+                            <button class="btn btn-danger-elite btn-sm rounded-pill px-3" type="button" (click)="onDelete(brand.id)">
+                                Remove
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+            <ng-template #noRecords>
+                <tr>
+                    <td colspan="3" class="text-center py-5 text-muted fst-italic">
+                        No brands found in the system.
+                    </td>
+                </tr>
+            </ng-template>
+        </tbody>
+    </table>
+</div>

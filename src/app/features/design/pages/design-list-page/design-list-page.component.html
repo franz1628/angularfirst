@@ -1,0 +1,22 @@
+<div class="hero-section">
+  <h1 class="hero-title">Creative Designs</h1>
+  <p class="hero-subtitle">Visual concepts and structural frameworks for your artisan projects.</p>
+</div>
+
+<div class="glass-card">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="mb-0">Design Library</h3>
+    <div class="d-flex align-items-center gap-3">
+      <div class="badge rounded-pill bg-white text-primary px-3 py-2 border">Active: {{designs.length}}</div>
+      <button class="btn btn-primary-elite" (click)="onAdd()">
+        + Commit New Design
+      </button>
+    </div>
+  </div>
+  
+  <app-design-list 
+    [designs]="designs" 
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)">
+  </app-design-list>
+</div>

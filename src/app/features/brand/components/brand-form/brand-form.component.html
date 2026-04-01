@@ -1,0 +1,11 @@
+<form (ngSubmit)="onSave()">
+    <div class="mb-4">
+        <label for="description" class="form-label text-uppercase small tracking-wider">Brand Presence</label>
+        <input type="text" [(ngModel)]="brand.description" name="description" class="form-control" id="description" placeholder="Brand name or tagline...">
+    </div>
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary-elite">
+            {{ brand.id > 0 ? 'Save Updates' : 'Add Brand' }}
+        </button>
+    </div>
+</form>

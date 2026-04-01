@@ -1,0 +1,27 @@
+<div class="app-container" style="max-width: 600px;">
+  <div class="mb-4">
+    <button class="btn btn-link text-muted d-flex align-items-center p-0" (click)="onCancel()">
+      &larr; Back to Design Library
+    </button>
+  </div>
+
+  <div class="glass-card">
+    <div class="mb-5 text-center">
+      <h2 class="hero-title pt-3" style="font-size: 2.5rem;">
+        {{ isEdit ? 'Update Concept' : 'New Design Blueprint' }}
+      </h2>
+      <p class="text-muted">Shape your vision and refine the details.</p>
+    </div>
+
+    <app-design-form 
+      [design]="design" 
+      (add)="onSave($event)">
+    </app-design-form>
+    
+    <div class="d-grid mt-3">
+        <button type="button" class="btn btn-outline-secondary rounded-pill" (click)="onCancel()">
+            Abandon Concept
+        </button>
+    </div>
+  </div>
+</div>
