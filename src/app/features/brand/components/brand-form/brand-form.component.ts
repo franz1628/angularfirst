@@ -8,7 +8,12 @@ import { Brand } from '../../models/brand.model';
 export class BrandFormComponent {
   @Input() public brand: Brand = {
     id: 0,
-    description: '',
+    name: '',
+    headquarters: '',
+    segment: '',
+    foundedYear: 2024,
+    heritage: '',
+    isActive: true,
     created_at: new Date(),
     updated_at: new Date()
   };
@@ -16,7 +21,7 @@ export class BrandFormComponent {
   @Output() public add = new EventEmitter<Brand>();
 
   onSave(): void {
-    if (this.brand.description.trim()) {
+    if (this.brand.name.trim()) {
       this.add.emit(this.brand);
     }
   }

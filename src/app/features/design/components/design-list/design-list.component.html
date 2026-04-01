@@ -2,8 +2,11 @@
     <table class="custom-table mb-0">
         <thead>
             <tr>
-                <th class="w-25">ID</th>
-                <th>Concept Description</th>
+                <th style="width: 80px;">ID</th>
+                <th>Model Designation</th>
+                <th>Powertrain</th>
+                <th>Output / Velocity</th>
+                <th>Status</th>
                 <th class="text-end">Actions</th>
             </tr>
         </thead>
@@ -11,14 +14,33 @@
             <ng-container *ngIf="designs.length > 0; else noRecords">
                 <tr *ngFor="let design of designs">
                     <td class="fw-bold text-accent opacity-75">#{{design.id}}</td>
-                    <td class="fw-medium text-dark">{{design.description}}</td>
+                    <td>
+                        <div class="fw-bold text-dark">{{design.modelName}}</div>
+                        <div class="small text-muted">{{design.chassisCode}} &bull; {{design.bodyStyle}}</div>
+                    </td>
+                    <td>
+                        <div class="fw-medium text-muted small">{{design.engineType}}</div>
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                             <span class="badge bg-dark-subtle text-dark border px-2 py-1 small">{{design.horsepower}} HP</span>
+                             <span class="badge bg-primary-subtle text-primary border px-2 py-1 small">{{design.topSpeed}} km/h</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <span [class]="'rounded-circle ' + (design.isProductionReady ? 'bg-success' : 'bg-warning')" 
+                                  style="width: 10px; height: 10px;"></span>
+                            <span class="small">{{design.isProductionReady ? 'Production' : 'Prototype'}}</span>
+                        </div>
+                    </td>
                     <td class="text-end">
                         <div class="d-flex gap-2 justify-content-end">
                             <button class="btn btn-outline-primary btn-sm rounded-pill px-3" type="button" (click)="onEdit(design.id)">
-                                Modify
+                                Specs
                             </button>
                             <button class="btn btn-danger-elite btn-sm rounded-pill px-3" type="button" (click)="onDelete(design.id)">
-                                Archive
+                                De-list
                             </button>
                         </div>
                     </td>
@@ -26,8 +48,8 @@
             </ng-container>
             <ng-template #noRecords>
                 <tr>
-                    <td colspan="3" class="text-center py-5 text-muted fst-italic">
-                        No designs currently in the library.
+                    <td colspan="6" class="text-center py-5 text-muted fst-italic">
+                        No automotive designs current in the engineering queue.
                     </td>
                 </tr>
             </ng-template>

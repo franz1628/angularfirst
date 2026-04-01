@@ -6,13 +6,23 @@ export class BrandService {
   public brands: Brand[] = [
     {
       id: 1,
-      description: 'Elite Craft Original',
+      name: 'Porsche AG',
+      headquarters: 'Stuttgart, Germany',
+      segment: 'Sports/Luxury',
+      foundedYear: 1931,
+      heritage: 'Legendary 911 evolution and high-performance engineering.',
+      isActive: true,
       created_at: new Date(),
       updated_at: new Date()
     },
     {
       id: 2,
-      description: 'Luxe Artisan Collection',
+      name: 'Ferrari S.p.A.',
+      headquarters: 'Maranello, Italy',
+      segment: 'Supercars',
+      foundedYear: 1947,
+      heritage: 'The most prestigious Italian luxury and racing heritage.',
+      isActive: true,
       created_at: new Date(),
       updated_at: new Date()
     }

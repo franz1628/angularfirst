@@ -7,7 +7,29 @@ import { Design } from "../models/design.model";
 export class DesignService {
   public designs: Design[] = [{
     id: 1,
-    description: 'Modern Minimalist Layout',
+    modelName: 'Taycan Turbo GT',
+    chassisCode: 'Y1A',
+    engineType: 'Electric / Dual Motors',
+    horsepower: 1092,
+    topSpeed: 305,
+    bodyStyle: 'GT',
+    designer: 'Michael Mauer',
+    version: '2.0.1',
+    isProductionReady: true,
+    state: 1,
+    created_at: new Date()
+  },
+  {
+    id: 2,
+    modelName: 'SF90 XX Stradale',
+    chassisCode: 'F173',
+    engineType: 'V8 Hybrid',
+    horsepower: 1030,
+    topSpeed: 320,
+    bodyStyle: 'Coupe',
+    designer: 'Flavio Manzoni',
+    version: '1.0.4',
+    isProductionReady: true,
     state: 1,
     created_at: new Date()
   }];

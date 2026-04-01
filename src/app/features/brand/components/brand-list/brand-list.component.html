@@ -2,8 +2,10 @@
     <table class="custom-table mb-0">
         <thead>
             <tr>
-                <th class="w-25">ID</th>
-                <th>Brand Description</th>
+                <th style="width: 80px;">ID</th>
+                <th>Manufacturer</th>
+                <th>HQ Location</th>
+                <th>Segment</th>
                 <th class="text-end">Actions</th>
             </tr>
         </thead>
@@ -11,14 +13,21 @@
             <ng-container *ngIf="brands.length > 0; else noRecords">
                 <tr *ngFor="let brand of brands">
                     <td class="fw-bold text-primary opacity-75">#{{brand.id}}</td>
-                    <td class="fw-medium">{{brand.description}}</td>
+                    <td>
+                        <div class="fw-bold text-dark">{{brand.name}}</div>
+                        <div class="small text-muted">Est. {{brand.foundedYear}} &bull; {{brand.isActive ? 'Active' : 'Defunct'}}</div>
+                    </td>
+                    <td class="fw-medium">{{brand.headquarters}}</td>
+                    <td>
+                        <span class="badge rounded-pill bg-light text-primary px-3 py-2 border small">{{brand.segment}}</span>
+                    </td>
                     <td class="text-end">
                         <div class="d-flex gap-2 justify-content-end">
                             <button class="btn btn-outline-primary btn-sm rounded-pill px-3" type="button" (click)="onEdit(brand.id)">
-                                Edit
+                                Archive View
                             </button>
                             <button class="btn btn-danger-elite btn-sm rounded-pill px-3" type="button" (click)="onDelete(brand.id)">
-                                Remove
+                                De-list
                             </button>
                         </div>
                     </td>
@@ -26,8 +35,8 @@
             </ng-container>
             <ng-template #noRecords>
                 <tr>
-                    <td colspan="3" class="text-center py-5 text-muted fst-italic">
-                        No brands found in the system.
+                    <td colspan="5" class="text-center py-5 text-muted fst-italic">
+                        No automotive manufacturers found in the database.
                     </td>
                 </tr>
             </ng-template>
