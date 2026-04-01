@@ -1,0 +1,11 @@
+<form (ngSubmit)="onSave()">
+    <div class="mb-4">
+        <label for="description" class="form-label text-uppercase small tracking-wider">Concept Blueprint</label>
+        <input type="text" [(ngModel)]="design.description" name="description" class="form-control" id="description" placeholder="Technical name or style...">
+    </div>
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary-elite">
+            {{ design.id > 0 ? 'Update Strategy' : 'Commit Strategy' }}
+        </button>
+    </div>
+</form>
