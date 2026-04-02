@@ -1,13 +1,21 @@
-<nav class="navbar-glass">
+<nav class="navbar-glass" *ngIf="authService.currentUser$ | async">
   <div class="container d-flex justify-content-between align-items-center">
-    <div class="brand-title h4 mb-0" style="color: var(--primary);">EliteCraft</div>
-    <div class="d-flex gap-3">
-      <a routerLink="/brand" routerLinkActive="active" class="nav-link-custom">Brands</a>
-      <a routerLink="/design" routerLinkActive="active" class="nav-link-custom">Designs</a>
+    <div class="brand-title h4 mb-0" style="color: #6366f1; font-weight: 700;">EliteCraft</div>
+    <div class="d-flex align-items-center gap-4">
+      <div class="d-flex gap-3">
+        <a routerLink="/brand" routerLinkActive="active" class="nav-link-custom">Brands</a>
+        <a routerLink="/design" routerLinkActive="active" class="nav-link-custom">Designs</a>
+      </div>
+      <button (click)="logout()" class="btn-logout">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"></path>
+        </svg>
+        <span>Cerrar Sesión</span>
+      </button>
     </div>
   </div>
 </nav>
 
-<div class="app-container">
+<div [class.app-container]="authService.currentUser$ | async">
   <router-outlet></router-outlet>
 </div>
