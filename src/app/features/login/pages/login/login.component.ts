@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate([this.returnUrl]);
         },
         error: err => {
-          this.error = err.message || 'Error al iniciar sesión';
+          this.error = 'Error al iniciar sesión';
           this.loading = false;
         }
       });

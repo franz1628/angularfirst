@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { Brand, BrandApiResponse } from '../models/brand.model';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class BrandService {
-  private apiUrl = 'http://localhost:3000/brand';
+  private apiUrl = `${environment.apiUrl}/brand`;
   
   private brandsSubject = new BehaviorSubject<Brand[]>([]);
   public brands$: Observable<Brand[]> = this.brandsSubject.asObservable();
