@@ -1,0 +1,50 @@
+<div class="table-card glass-morphism">
+  <div class="table-responsive">
+    <table class="premium-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Manufacturer</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let brand of brands; trackBy: trackByBrandId" class="animate-fade-in">
+          <td class="id-cell">#{{brand.id}}</td>
+          <td>
+            <div class="brand-info">
+              <span class="brand-name">{{brand.name}}</span>
+              <span class="brand-date">{{brand.created_at | date:'mediumDate'}}</span>
+            </div>
+          </td>
+          <td class="desc-cell">{{brand.description}}</td>
+          <td>
+            <span class="badge" [class.active]="brand.state === 1" [class.inactive]="brand.state !== 1">
+              {{brand.state === 1 ? 'Active' : 'Inactive'}}
+            </span>
+          </td>
+          <td class="actions-cell">
+            <div class="action-buttons">
+              <button class="btn-icon edit" (click)="edit.emit(brand)" title="Edit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+              </button>
+              <button class="btn-icon delete" (click)="delete.emit(brand.id)" title="Delete">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="brands?.length === 0 && !loading">
+          <td colspan="5" class="empty-state">
+            <div class="empty-content">
+              <span class="empty-icon">📂</span>
+              <p>No manufacturers found in the database.</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

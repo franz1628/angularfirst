@@ -1,0 +1,53 @@
+<div class="registry-card glass-morphism animate-slide-up">
+  <div class="registry-header">
+    <h3 class="registry-title">{{ brand ? 'Update Essential Identity' : 'New Brand Registration' }}</h3>
+    <p class="registry-subtitle">Maintain the integrity of your manufacturer database with precise data entry.</p>
+  </div>
+
+  <form [formGroup]="brandForm" (ngSubmit)="onSubmit()" class="registry-form">
+    <div class="form-grid">
+      <div class="form-item full-width" [class.error]="f['name'].invalid && f['name'].touched">
+        <label for="name">Manufacturer Name</label>
+        <div class="input-container">
+          <input id="name" type="text" formControlName="name" placeholder="e.g. Aston Martin Lagonda">
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </div>
+        <div class="error-msg" *ngIf="f['name'].hasError('required') && f['name'].touched">The manufacturer name is mandatory.</div>
+        <div class="error-msg" *ngIf="f['name'].hasError('minlength') && f['name'].touched">At least 2 characters are required.</div>
+      </div>
+
+      <div class="form-item full-width" [class.error]="f['description'].invalid && f['description'].touched">
+        <label for="description">Heritage Description</label>
+        <textarea id="description" formControlName="description" rows="3" placeholder="Describe the historical significance and mission..."></textarea>
+        <div class="error-msg" *ngIf="f['description'].hasError('required') && f['description'].touched">A brief description is required to provide context.</div>
+      </div>
+
+      <div class="form-item" [class.error]="f['logo'].invalid && f['logo'].touched">
+        <label for="logo">Insignia URL</label>
+        <div class="input-container">
+          <input id="logo" type="text" formControlName="logo" placeholder="https://cdn.brand.com/logo.svg">
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+        </div>
+        <div class="error-msg" *ngIf="f['logo'].hasError('pattern') && f['logo'].touched">Please enter a valid URL (http/https).</div>
+      </div>
+
+      <div class="form-item">
+        <label for="state">Operational Status</label>
+        <div class="input-container">
+          <select id="state" formControlName="state">
+            <option [ngValue]="1">Actively Operating</option>
+            <option [ngValue]="0">Inactive / Legacy</option>
+          </select>
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM9 9l6 6M15 9l-6 6"></path></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" (click)="cancel.emit()">Discard Changes</button>
+      <button type="submit" class="btn-save" [disabled]="brandForm.invalid">
+        {{ brand ? 'Confirm Update' : 'Initialize Brand' }}
+      </button>
+    </div>
+  </form>
+</div>
