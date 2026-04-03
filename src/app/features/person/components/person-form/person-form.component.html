@@ -1,0 +1,50 @@
+<form (ngSubmit)="onSave()" #personForm="ngForm">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <label for="firstName" class="form-label text-uppercase small tracking-wider">First Name</label>
+            <input type="text" [(ngModel)]="person.firstName" name="firstName" class="form-control" id="firstName" placeholder="e.g. John" required>
+        </div>
+        <div class="col-md-6 mb-4">
+            <label for="lastName" class="form-label text-uppercase small tracking-wider">Last Name</label>
+            <input type="text" [(ngModel)]="person.lastName" name="lastName" class="form-control" id="lastName" placeholder="e.g. Doe" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <label for="documentNumber" class="form-label text-uppercase small tracking-wider">Document Number / ID</label>
+            <input type="text" [(ngModel)]="person.documentNumber" name="documentNumber" class="form-control" id="documentNumber" placeholder="ID or Passport" required>
+        </div>
+        <div class="col-md-6 mb-4">
+            <label for="phone" class="form-label text-uppercase small tracking-wider">Contact Phone</label>
+            <input type="text" [(ngModel)]="person.phone" name="phone" class="form-control" id="phone" placeholder="+1 555-0198" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <label for="email" class="form-label text-uppercase small tracking-wider">Email Address</label>
+            <input type="email" [(ngModel)]="person.email" name="email" class="form-control" id="email" placeholder="john.doe@example.com" required>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="address" class="form-label text-uppercase small tracking-wider">Residential Address</label>
+        <textarea [(ngModel)]="person.address" name="address" class="form-control" id="address" rows="2" placeholder="Street, City, Postal Code..."></textarea>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mb-4 d-flex align-items-center">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="isActive" name="isActive" [(ngModel)]="person.isActive">
+                <label class="form-check-label" for="isActive">Owner account is active</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary-elite" [disabled]="!personForm.form.valid">
+            {{ person.id > 0 ? 'Update Owner Record' : 'Register New Owner' }}
+        </button>
+    </div>
+</form>

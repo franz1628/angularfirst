@@ -1,0 +1,22 @@
+<div class="hero-section">
+  <h1 class="hero-title">Vehicle Owners Database</h1>
+  <p class="hero-subtitle">Manage customer profiles and vehicle owner registrations.</p>
+</div>
+
+<div class="glass-card">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="mb-0">Registered Owners</h3>
+    <div class="d-flex align-items-center gap-3">
+      <span class="badge rounded-pill bg-light text-primary px-3 py-2 border">Total: {{persons.length}}</span>
+      <button class="btn btn-primary-elite" (click)="onAdd()">
+        + Register New Owner
+      </button>
+    </div>
+  </div>
+  
+  <app-person-list 
+    [persons]="persons" 
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)">
+  </app-person-list>
+</div>

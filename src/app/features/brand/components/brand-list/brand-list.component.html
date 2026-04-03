@@ -4,8 +4,8 @@
             <tr>
                 <th style="width: 80px;">ID</th>
                 <th>Manufacturer</th>
-                <th>HQ Location</th>
-                <th>Segment</th>
+                <th>Description</th>
+                <th>State</th>
                 <th class="text-end">Actions</th>
             </tr>
         </thead>
@@ -15,11 +15,13 @@
                     <td class="fw-bold text-primary opacity-75">#{{brand.id}}</td>
                     <td>
                         <div class="fw-bold text-dark">{{brand.name}}</div>
-                        <div class="small text-muted">Est. {{brand.foundedYear}} &bull; {{brand.isActive ? 'Active' : 'Defunct'}}</div>
+                        <div class="small text-muted">{{brand.created_at | date:'mediumDate'}}</div>
                     </td>
-                    <td class="fw-medium">{{brand.headquarters}}</td>
+                    <td class="fw-medium">{{brand.description}}</td>
                     <td>
-                        <span class="badge rounded-pill bg-light text-primary px-3 py-2 border small">{{brand.segment}}</span>
+                        <span class="badge rounded-pill" [ngClass]="brand.state === 1 ? 'bg-success-light text-success' : 'bg-danger-light text-danger'">
+                          {{brand.state === 1 ? 'Active' : 'Inactive'}}
+                        </span>
                     </td>
                     <td class="text-end">
                         <div class="d-flex gap-2 justify-content-end">

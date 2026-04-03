@@ -1,12 +1,17 @@
 export interface Brand {
   id: number;
   name: string;
-  headquarters: string;
-  segment: string;
-  foundedYear: number;
-  heritage: string;
-  logoUrl?: string;
-  isActive: boolean;
-  created_at: Date;
-  updated_at: Date;
+  description: string;
+  logo: string;
+  state: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface BrandApiResponse {
+  data: Brand[];
+  meta: {
+    timestamp: string;
+    path: string;
+  };
 }

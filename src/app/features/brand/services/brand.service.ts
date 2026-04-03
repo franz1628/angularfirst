@@ -1,59 +1,33 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Brand } from '../models/brand.model';
+import { map, Observable } from 'rxjs';
+import { Brand, BrandApiResponse } from '../models/brand.model';
 
 @Injectable({ providedIn: 'root' })
 export class BrandService {
-  public brands: Brand[] = [
-    {
-      id: 1,
-      name: 'Porsche AG',
-      headquarters: 'Stuttgart, Germany',
-      segment: 'Sports/Luxury',
-      foundedYear: 1931,
-      heritage: 'Legendary 911 evolution and high-performance engineering.',
-      isActive: true,
-      created_at: new Date(),
-      updated_at: new Date()
-    },
-    {
-      id: 2,
-      name: 'Ferrari S.p.A.',
-      headquarters: 'Maranello, Italy',
-      segment: 'Supercars',
-      foundedYear: 1947,
-      heritage: 'The most prestigious Italian luxury and racing heritage.',
-      isActive: true,
-      created_at: new Date(),
-      updated_at: new Date()
-    }
-  ];
+  private apiUrl = 'http://localhost:3000/brand';
 
-  public getById(id: number): Brand | undefined {
-    return this.brands.find(b => b.id === id);
+  constructor(private http: HttpClient) {}
+
+  public getAll(): Observable<Brand[]> {
+    return this.http.get<BrandApiResponse>(this.apiUrl).pipe(
+      map(response => response.data)
+    );
   }
 
-  public add(brand: Brand): void {
-    const newId = this.brands.length > 0 ? Math.max(...this.brands.map(b => b.id)) + 1 : 1;
-    this.brands.push({
-      ...brand,
-      id: newId,
-      created_at: new Date(),
-      updated_at: new Date()
-    });
+  public getById(id: number): Observable<Brand> {
+    return this.http.get<Brand>(`${this.apiUrl}/${id}`);
   }
 
-  public update(id: number, updatedData: Partial<Brand>): void {
-    const index = this.brands.findIndex(b => b.id === id);
-    if (index !== -1) {
-      this.brands[index] = {
-        ...this.brands[index],
-        ...updatedData,
-        updated_at: new Date()
-      };
-    }
+  public add(brand: Partial<Brand>): Observable<Brand> {
+    return this.http.post<Brand>(this.apiUrl, brand);
   }
 
-  public delete(id: number): void {
-    this.brands = this.brands.filter(x => x.id !== id);
+  public update(id: number, brand: Partial<Brand>): Observable<Brand> {
+    return this.http.patch<Brand>(`${this.apiUrl}/${id}`, brand);
+  }
+
+  public delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

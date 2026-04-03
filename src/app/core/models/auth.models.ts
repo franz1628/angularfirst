@@ -1,16 +1,22 @@
 export interface User {
-    id: string;
-    username: string;
+    id: number;
     email: string;
-    role: string;
+    name: string;
 }
 
 export interface AuthResponse {
-    token: string;
-    user: User;
+    data: {
+        access_token: string;
+        refresh_token: string;
+        user: User;
+    };
+    meta: {
+        timestamp: string;
+        path: string;
+    };
 }
 
 export interface LoginRequest {
-    username: string;
+    email: string;
     password: string;
 }

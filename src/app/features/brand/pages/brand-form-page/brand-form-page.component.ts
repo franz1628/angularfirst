@@ -12,13 +12,11 @@ export class BrandFormPageComponent implements OnInit {
   public brand: Brand = {
     id: 0,
     name: '',
-    headquarters: '',
-    segment: '',
-    foundedYear: 2024,
-    heritage: '',
-    isActive: true,
-    created_at: new Date(),
-    updated_at: new Date()
+    description: '',
+    logo: '',
+    state: 1,
+    created_at: '',
+    updated_at: ''
   };
 
   public isEdit = false;
@@ -33,22 +31,25 @@ export class BrandFormPageComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.isEdit = true;
-      const found = this.brandService.getById(Number(id));
-      if (found) {
-        this.brand = { ...found };
-      } else {
-        this.router.navigate(['/brand']);
-      }
+      this.brandService.getById(Number(id)).subscribe({
+        next: (found) => {
+          this.brand = { ...found };
+        },
+        error: () => {
+          this.router.navigate(['/brand']);
+        }
+      });
     }
   }
 
-  onSave(brand: Brand): void {
-    if (this.isEdit) {
-      this.brandService.update(this.brand.id, brand);
-    } else {
-      this.brandService.add(brand);
-    }
-    this.router.navigate(['/brand']);
+  onSave(brandData: Partial<Brand>): void {
+    const action = this.isEdit 
+      ? this.brandService.update(this.brand.id, brandData)
+      : this.brandService.add(brandData);
+
+    action.subscribe(() => {
+      this.router.navigate(['/brand']);
+    });
   }
 
   onCancel(): void {
