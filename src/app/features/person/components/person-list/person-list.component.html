@@ -1,0 +1,50 @@
+<div class="table-container">
+    <table class="custom-table mb-0">
+        <thead>
+            <tr>
+                <th style="width: 80px;">ID</th>
+                <th>Owner Details</th>
+                <th>Contact</th>
+                <th>Status</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="persons.length > 0; else noRecords">
+                <tr *ngFor="let person of persons">
+                    <td class="fw-bold text-primary opacity-75">#{{person.id}}</td>
+                    <td>
+                        <div class="fw-bold text-dark">{{person.firstName}} {{person.lastName}}</div>
+                        <div class="small text-muted">Doc: {{person.documentNumber}}</div>
+                    </td>
+                    <td>
+                        <div class="fw-medium">{{person.email}}</div>
+                        <div class="small text-muted">{{person.phone}}</div>
+                    </td>
+                    <td>
+                        <span class="badge rounded-pill bg-light text-primary px-3 py-2 border small">
+                            {{person.isActive ? 'Active' : 'Inactive'}}
+                        </span>
+                    </td>
+                    <td class="text-end">
+                        <div class="d-flex gap-2 justify-content-end">
+                            <button class="btn btn-outline-primary btn-sm rounded-pill px-3" type="button" (click)="onEdit(person.id)">
+                                View / Edit
+                            </button>
+                            <button class="btn btn-danger-elite btn-sm rounded-pill px-3" type="button" (click)="onDelete(person.id)">
+                                Remove
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+            <ng-template #noRecords>
+                <tr>
+                    <td colspan="5" class="text-center py-5 text-muted fst-italic">
+                        No vehicle owners found in the database.
+                    </td>
+                </tr>
+            </ng-template>
+        </tbody>
+    </table>
+</div>

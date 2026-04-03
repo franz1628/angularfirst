@@ -12,12 +12,13 @@
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
       <div class="form-group">
-        <label for="username">Usuario</label>
+        <label for="email">Email</label>
         <div class="input-wrapper">
-          <input type="text" id="username" formControlName="username" 
-                 placeholder="admin" [class.is-invalid]="submitted && f['username'].errors">
-          <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
-            Se requiere el usuario.
+          <input type="email" id="email" formControlName="email" 
+                 placeholder="user@example.com" [class.is-invalid]="submitted && f['email'].errors">
+          <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+            <span *ngIf="f['email'].errors['required']">Se requiere el email.</span>
+            <span *ngIf="f['email'].errors['email']">Ingrese un email válido.</span>
           </div>
         </div>
       </div>

@@ -1,0 +1,17 @@
+<div class="hero-section hero-section-compact">
+  <div class="d-flex align-items-center gap-3">
+    <button class="btn btn-light rounded-circle shadow-sm" style="width: 40px; height: 40px; padding: 0;" routerLink="/person">
+      &larr;
+    </button>
+    <div>
+      <h1 class="hero-title m-0" style="font-size: 1.5rem;">
+        {{ isEditMode ? 'Edit Owner Record' : 'Register New Owner' }}
+      </h1>
+      <p class="hero-subtitle m-0 small">Please provide the personal and contact details.</p>
+    </div>
+  </div>
+</div>
+
+<div class="glass-card mt-3 mx-auto" style="max-width: 800px;">
+  <app-person-form [person]="person" (save)="onSave($event)"></app-person-form>
+</div>

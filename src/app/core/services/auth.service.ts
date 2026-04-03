@@ -1,46 +1,29 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
-import { delay, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AuthResponse, LoginRequest, User } from '../models/auth.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private apiUrl = 'http://localhost:3000/auth';
   private currentUserSubject = new BehaviorSubject<User | null>(this.getUserFromLocalStorage());
   public currentUser$: Observable<User | null> = this.currentUserSubject.asObservable();
 
-  constructor() {}
+  constructor(private http: HttpClient) { }
 
   public get currentUserValue(): User | null {
     return this.currentUserSubject.value;
   }
 
   public login(request: LoginRequest): Observable<AuthResponse> {
-    // Mock login logic
-    if (request.username === 'admin' && request.password === 'admin123') {
-      const mockResponse: AuthResponse = {
-        token: 'mock-jwt-token-' + Math.random().toString(36).substring(7),
-        user: {
-          id: '1',
-          username: 'admin',
-          email: 'admin@example.com',
-          role: 'ADMIN'
-        }
-      };
-
-      return of(mockResponse).pipe(
-        delay(1500), // Simulate network delay
-        tap(response => {
-          this.saveToLocalStorage(response);
-          this.currentUserSubject.next(response.user);
-        })
-      );
-    } else {
-      return throwError(() => new Error('Credenciales incorrectas')).pipe(
-        delay(1000)
-      );
-    }
+    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, request).pipe(
+      tap(response => {
+        this.saveToLocalStorage(response);
+        this.currentUserSubject.next(response.data.user);
+      })
+    );
   }
 
   public logout(): void {
@@ -54,8 +37,8 @@ export class AuthService {
   }
 
   private saveToLocalStorage(response: AuthResponse): void {
-    localStorage.setItem('currentUser', JSON.stringify(response.user));
-    localStorage.setItem('token', response.token);
+    localStorage.setItem('currentUser', JSON.stringify(response.data.user));
+    localStorage.setItem('token', response.data.access_token);
   }
 
   private getUserFromLocalStorage(): User | null {
