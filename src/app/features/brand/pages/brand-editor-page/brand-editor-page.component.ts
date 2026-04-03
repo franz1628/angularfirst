@@ -4,22 +4,14 @@ import { Brand } from '../../models/brand.model';
 import { BrandService } from '../../services/brand.service';
 
 @Component({
-  selector: 'app-brand-form-page',
-  templateUrl: './brand-form-page.component.html'
+  selector: 'app-brand-editor-page',
+  templateUrl: './brand-editor-page.component.html',
+  styleUrls: ['./brand-editor-page.component.css']
 })
-export class BrandFormPageComponent implements OnInit {
-
-  public brand: Brand = {
-    id: 0,
-    name: '',
-    description: '',
-    logo: '',
-    state: 1,
-    created_at: '',
-    updated_at: ''
-  };
-
-  public isEdit = false;
+export class BrandEditorPageComponent implements OnInit {
+  selectedBrand: Brand | null = null;
+  loading = false;
+  isEdit = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,9 +23,11 @@ export class BrandFormPageComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.isEdit = true;
+      this.loading = true;
       this.brandService.getById(Number(id)).subscribe({
-        next: (found) => {
-          this.brand = { ...found };
+        next: (brand) => {
+          this.selectedBrand = brand;
+          this.loading = false;
         },
         error: () => {
           this.router.navigate(['/brand']);
@@ -43,12 +37,20 @@ export class BrandFormPageComponent implements OnInit {
   }
 
   onSave(brandData: Partial<Brand>): void {
-    const action = this.isEdit 
-      ? this.brandService.update(this.brand.id, brandData)
+    this.loading = true;
+    const action = this.isEdit && this.selectedBrand
+      ? this.brandService.update(this.selectedBrand.id, brandData)
       : this.brandService.add(brandData);
 
-    action.subscribe(() => {
-      this.router.navigate(['/brand']);
+    action.subscribe({
+      next: () => {
+        this.loading = false;
+        this.router.navigate(['/brand']);
+      },
+      error: (err) => {
+        this.loading = false;
+        console.error('Operation failed', err);
+      }
     });
   }
 

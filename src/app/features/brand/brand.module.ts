@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrandRoutingModule } from './brand-routing.module';
 
-import { BrandListComponent } from './components/brand-list/brand-list.component';
-import { BrandFormComponent } from './components/brand-form/brand-form.component';
-import { BrandListPageComponent } from './pages/brand-list-page/brand-list-page.component';
-import { BrandFormPageComponent } from './pages/brand-form-page/brand-form-page.component';
+import { BrandDataTableComponent } from './components/brand-data-table/brand-data-table.component';
+import { BrandRegistryComponent } from './components/brand-registry/brand-registry.component';
+import { BrandOverviewComponent } from './pages/brand-overview/brand-overview.component';
+import { BrandEditorPageComponent } from './pages/brand-editor-page/brand-editor-page.component';
 
 @NgModule({
   declarations: [
-    BrandListComponent,
-    BrandFormComponent,
-    BrandListPageComponent,
-    BrandFormPageComponent
+    BrandDataTableComponent,
+    BrandRegistryComponent,
+    BrandOverviewComponent,
+    BrandEditorPageComponent
   ],
   imports: [
     CommonModule, 
-    FormsModule,
-    RouterModule
+    ReactiveFormsModule,
+    BrandRoutingModule
   ],
   exports: [
-    BrandListPageComponent,
-    BrandFormPageComponent
+    BrandOverviewComponent,
+    BrandEditorPageComponent
   ]
 })
 export class BrandModule { }

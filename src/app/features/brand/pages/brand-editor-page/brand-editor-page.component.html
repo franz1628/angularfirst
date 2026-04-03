@@ -1,0 +1,20 @@
+<div class="editor-page-container animate-fade-in">
+  <header class="editor-header">
+    <button class="btn-back" (click)="onCancel()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      Back to Portfolio
+    </button>
+    <div class="header-content">
+      <h1 class="editor-title">{{ isEdit ? 'Refine Manufacturer Identity' : 'Initialize New Identifier' }}</h1>
+      <p class="editor-subtitle">Ensure the integrity of your global manufacturer data with professional-grade entry.</p>
+    </div>
+  </header>
+
+  <main class="editor-main">
+    <app-brand-registry 
+      [brand]="selectedBrand" 
+      (save)="onSave($event)" 
+      (cancel)="onCancel()">
+    </app-brand-registry>
+  </main>
+</div>
