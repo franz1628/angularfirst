@@ -9,13 +9,11 @@ export class BrandFormComponent {
   @Input() public brand: Brand = {
     id: 0,
     name: '',
-    headquarters: '',
-    segment: '',
-    foundedYear: 2024,
-    heritage: '',
-    isActive: true,
-    created_at: new Date(),
-    updated_at: new Date()
+    description: '',
+    logo: '',
+    state: 1,
+    created_at: '',
+    updated_at: ''
   };
 
   @Output() public add = new EventEmitter<Brand>();
