@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { PersonListPageComponent } from './pages/person-list-page/person-list-page.component';
-import { PersonFormPageComponent } from './pages/person-form-page/person-form-page.component';
-import { PersonListComponent } from './components/person-list/person-list.component';
-import { PersonFormComponent } from './components/person-form/person-form.component';
+import { PersonOverviewComponent } from './pages/person-overview/person-overview.component';
+import { PersonEditorPageComponent } from './pages/person-editor-page/person-editor-page.component';
+import { PersonDataTableComponent } from './components/person-data-table/person-data-table.component';
+import { PersonRegistryComponent } from './components/person-registry/person-registry.component';
 
 @NgModule({
   declarations: [
-    PersonListPageComponent,
-    PersonFormPageComponent,
-    PersonListComponent,
-    PersonFormComponent
+    PersonOverviewComponent,
+    PersonEditorPageComponent,
+    PersonDataTableComponent,
+    PersonRegistryComponent
   ],
   imports: [
     CommonModule,
@@ -20,8 +20,8 @@ import { PersonFormComponent } from './components/person-form/person-form.compon
     RouterModule
   ],
   exports: [
-    PersonListPageComponent,
-    PersonFormPageComponent
+    PersonOverviewComponent,
+    PersonEditorPageComponent
   ]
 })
 export class PersonModule { }

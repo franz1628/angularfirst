@@ -4,10 +4,10 @@ import { DesignService } from '../../services/design.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-design-list-page',
-  templateUrl: './design-list-page.component.html'
+  selector: 'app-design-overview',
+  templateUrl: './design-overview.component.html'
 })
-export class DesignListPageComponent implements OnInit {
+export class DesignOverviewComponent implements OnInit {
 
   constructor(public designService: DesignService, private router: Router) {}
 

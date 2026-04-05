@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Person } from '../../models/person.model';
 
 @Component({
-  selector: 'app-person-form',
-  templateUrl: './person-form.component.html',
-  styleUrls: ['./person-form.component.css']
+  selector: 'app-person-registry',
+  templateUrl: './person-registry.component.html',
+  styleUrls: ['./person-registry.component.css']
 })
-export class PersonFormComponent {
+export class PersonRegistryComponent {
   @Input() person: Person = {
     id: 0,
     documentNumber: '',

@@ -7,13 +7,15 @@ import { BrandDataTableComponent } from './components/brand-data-table/brand-dat
 import { BrandRegistryComponent } from './components/brand-registry/brand-registry.component';
 import { BrandOverviewComponent } from './pages/brand-overview/brand-overview.component';
 import { BrandEditorPageComponent } from './pages/brand-editor-page/brand-editor-page.component';
+import { BrandImagePipe } from './pipes/brand-image.pipe';
 
 @NgModule({
   declarations: [
     BrandDataTableComponent,
     BrandRegistryComponent,
     BrandOverviewComponent,
-    BrandEditorPageComponent
+    BrandEditorPageComponent,
+    BrandImagePipe
   ],
   imports: [
     CommonModule, 
@@ -22,7 +24,8 @@ import { BrandEditorPageComponent } from './pages/brand-editor-page/brand-editor
   ],
   exports: [
     BrandOverviewComponent,
-    BrandEditorPageComponent
+    BrandEditorPageComponent,
+    BrandImagePipe
   ]
 })
 export class BrandModule { }

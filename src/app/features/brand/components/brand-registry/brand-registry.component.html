@@ -22,13 +22,25 @@
         <div class="error-msg" *ngIf="f['description'].hasError('required') && f['description'].touched">A brief description is required to provide context.</div>
       </div>
 
-      <div class="form-item" [class.error]="f['logo'].invalid && f['logo'].touched">
-        <label for="logo">Insignia URL</label>
-        <div class="input-container">
-          <input id="logo" type="text" formControlName="logo" placeholder="https://cdn.brand.com/logo.svg">
-          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+      <div class="form-item full-width" [class.error]="f['logo'].invalid && f['logo'].touched">
+        <label>Manufacturer Insignia</label>
+        <div class="logo-upload-container">
+          <div class="logo-preview" [class.empty]="!previewUrl">
+            <img *ngIf="previewUrl" [src]="previewUrl" alt="Logo Preview">
+            <div *ngIf="!previewUrl" class="upload-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+              <span>No image selected</span>
+            </div>
+          </div>
+          <div class="upload-controls">
+            <button type="button" class="btn-upload" (click)="fileInput.click()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              {{ selectedFile ? 'Change Image' : 'Select Image' }}
+            </button>
+            <p class="upload-hint">JPG, PNG or SVG. Max 2MB.</p>
+            <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none">
+          </div>
         </div>
-        <div class="error-msg" *ngIf="f['logo'].hasError('pattern') && f['logo'].touched">Please enter a valid URL (http/https).</div>
       </div>
 
       <div class="form-item">

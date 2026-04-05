@@ -46,4 +46,10 @@ export class BrandService {
       tap(() => this.refreshBrandList())
     );
   }
+
+  public uploadLogo(file: File): Observable<{ logoUrl: string }> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<{ logoUrl: string }>(`${this.apiUrl}/upload`, formData);
+  }
 }

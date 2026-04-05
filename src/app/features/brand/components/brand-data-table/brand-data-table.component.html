@@ -14,9 +14,14 @@
         <tr *ngFor="let brand of brands; trackBy: trackByBrandId" class="animate-fade-in">
           <td class="id-cell">#{{brand.id}}</td>
           <td>
-            <div class="brand-info">
-              <span class="brand-name">{{brand.name}}</span>
-              <span class="brand-date">{{brand.created_at | date:'mediumDate'}}</span>
+            <div class="brand-item">
+              <div class="brand-logo-small">
+                <img [src]="brand.logo | brandImage" [alt]="brand.name">
+              </div>
+              <div class="brand-info">
+                <span class="brand-name">{{brand.name}}</span>
+                <span class="brand-date">{{brand.created_at | date:'mediumDate'}}</span>
+              </div>
             </div>
           </td>
           <td class="desc-cell">{{brand.description}}</td>
