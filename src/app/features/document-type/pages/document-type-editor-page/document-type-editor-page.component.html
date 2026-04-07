@@ -1,0 +1,20 @@
+<div class="editor-page-container animate-fade-in">
+  <header class="editor-header">
+    <button class="btn-back" (click)="onCancel()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      Back to System
+    </button>
+    <div class="header-content">
+      <h1 class="editor-title">{{ isEdit ? 'Update Document Classification' : 'Add New Document Type' }}</h1>
+      <p class="editor-subtitle">Ensure each document category is accurately defined for better record management.</p>
+    </div>
+  </header>
+
+  <main class="editor-main">
+    <app-document-type-registry 
+      [documentType]="selectedDocType" 
+      (save)="onSave($event)" 
+      (cancel)="onCancel()">
+    </app-document-type-registry>
+  </main>
+</div>
