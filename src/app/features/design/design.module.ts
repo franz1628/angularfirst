@@ -3,17 +3,17 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
-import { DesignFormComponent } from "./components/design-form/design-form.component";
-import { DesignListComponent } from "./components/design-list/design-list.component";
-import { DesignListPageComponent } from "./pages/design-list-page/design-list-page.component";
-import { DesignFormPageComponent } from "./pages/design-form-page/design-form-page.component";
+import { DesignRegistryComponent } from "./components/design-registry/design-registry.component";
+import { DesignDataTableComponent } from "./components/design-data-table/design-data-table.component";
+import { DesignOverviewComponent } from "./pages/design-overview/design-overview.component";
+import { DesignEditorPageComponent } from "./pages/design-editor-page/design-editor-page.component";
 
 @NgModule({
   declarations: [
-    DesignFormComponent,
-    DesignListComponent,
-    DesignListPageComponent,
-    DesignFormPageComponent
+    DesignRegistryComponent,
+    DesignDataTableComponent,
+    DesignOverviewComponent,
+    DesignEditorPageComponent
   ],
   imports: [
     CommonModule,
@@ -21,8 +21,8 @@ import { DesignFormPageComponent } from "./pages/design-form-page/design-form-pa
     RouterModule
   ],
   exports: [
-    DesignListPageComponent,
-    DesignFormPageComponent
+    DesignOverviewComponent,
+    DesignEditorPageComponent
   ]
 })
 export class DesignModule { }

@@ -2,10 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Design } from '../../models/design.model';
 
 @Component({
-  selector: 'app-design-form',
-  templateUrl: './design-form.component.html'
+  selector: 'app-design-registry',
+  templateUrl: './design-registry.component.html'
 })
-export class DesignFormComponent {
+export class DesignRegistryComponent {
   @Input() public design: Design = {
     id: 0,
     modelName: '',

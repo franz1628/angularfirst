@@ -4,10 +4,10 @@ import { PersonService } from '../../services/person.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-person-form-page',
-  templateUrl: './person-form-page.component.html'
+  selector: 'app-person-editor-page',
+  templateUrl: './person-editor-page.component.html'
 })
-export class PersonFormPageComponent implements OnInit {
+export class PersonEditorPageComponent implements OnInit {
 
   person: Person = {
     id: 0,

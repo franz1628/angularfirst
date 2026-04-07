@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { Brand, BrandApiResponse } from '../models/brand.model';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class BrandService {
-  private apiUrl = 'http://localhost:3000/brand';
+  private apiUrl = `${environment.apiUrl}/brand`;
   
   private brandsSubject = new BehaviorSubject<Brand[]>([]);
   public brands$: Observable<Brand[]> = this.brandsSubject.asObservable();
@@ -44,5 +45,11 @@ export class BrandService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
       tap(() => this.refreshBrandList())
     );
+  }
+
+  public uploadLogo(file: File): Observable<{ logoUrl: string }> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<{ logoUrl: string }>(`${this.apiUrl}/upload`, formData);
   }
 }

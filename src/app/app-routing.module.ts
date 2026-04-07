@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DesignListPageComponent } from './features/design/pages/design-list-page/design-list-page.component';
-import { DesignFormPageComponent } from './features/design/pages/design-form-page/design-form-page.component';
-import { PersonListPageComponent } from './features/person/pages/person-list-page/person-list-page.component';
-import { PersonFormPageComponent } from './features/person/pages/person-form-page/person-form-page.component';
+import { DesignOverviewComponent } from './features/design/pages/design-overview/design-overview.component';
+import { DesignEditorPageComponent } from './features/design/pages/design-editor-page/design-editor-page.component';
+import { PersonOverviewComponent } from './features/person/pages/person-overview/person-overview.component';
+import { PersonEditorPageComponent } from './features/person/pages/person-editor-page/person-editor-page.component';
 import { AuthGuard } from './core/guards/auth.guard';
 const routes: Routes = [
   {
@@ -15,19 +15,24 @@ const routes: Routes = [
     path: 'design',
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: DesignListPageComponent },
-      { path: 'add', component: DesignFormPageComponent },
-      { path: ':id', component: DesignFormPageComponent }
+      { path: '', component: DesignOverviewComponent },
+      { path: 'add', component: DesignEditorPageComponent },
+      { path: ':id', component: DesignEditorPageComponent }
     ]
   },
   {
     path: 'person',
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: PersonListPageComponent },
-      { path: 'add', component: PersonFormPageComponent },
-      { path: ':id', component: PersonFormPageComponent }
+      { path: '', component: PersonOverviewComponent },
+      { path: 'add', component: PersonEditorPageComponent },
+      { path: ':id', component: PersonEditorPageComponent }
     ]
+  },
+  {
+    path: 'document-type',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./features/document-type/document-type.module').then(m => m.DocumentTypeModule)
   },
   {
     path: 'login',

@@ -4,10 +4,10 @@ import { Design } from '../../models/design.model';
 import { DesignService } from '../../services/design.service';
 
 @Component({
-  selector: 'app-design-form-page',
-  templateUrl: './design-form-page.component.html'
+  selector: 'app-design-editor-page',
+  templateUrl: './design-editor-page.component.html'
 })
-export class DesignFormPageComponent implements OnInit {
+export class DesignEditorPageComponent implements OnInit {
 
   public design: Design = {
     id: 0,

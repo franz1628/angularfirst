@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { of, switchMap } from 'rxjs';
 import { Brand } from '../../models/brand.model';
 import { BrandService } from '../../services/brand.service';
 
@@ -36,13 +37,24 @@ export class BrandEditorPageComponent implements OnInit {
     }
   }
 
-  onSave(brandData: Partial<Brand>): void {
+  onSave(event: { data: Partial<Brand>, logoFile?: File }): void {
+    const { data, logoFile } = event;
     this.loading = true;
-    const action = this.isEdit && this.selectedBrand
-      ? this.brandService.update(this.selectedBrand.id, brandData)
-      : this.brandService.add(brandData);
 
-    action.subscribe({
+    // 1. Handle Logo Upload if exists
+    const upload$ = logoFile 
+      ? this.brandService.uploadLogo(logoFile).pipe(switchMap(res => of(res.logoUrl)))
+      : of(data.logo);
+
+    // 2. Cascade to Save
+    upload$.pipe(
+      switchMap(logoUrl => {
+        const finalData = { ...data, logo: logoUrl };
+        return this.isEdit && this.selectedBrand
+          ? this.brandService.update(this.selectedBrand.id, finalData)
+          : this.brandService.add(finalData);
+      })
+    ).subscribe({
       next: () => {
         this.loading = false;
         this.router.navigate(['/brand']);
@@ -50,6 +62,7 @@ export class BrandEditorPageComponent implements OnInit {
       error: (err) => {
         this.loading = false;
         console.error('Operation failed', err);
+        alert('Failed to save brand. Please check if the backend upload endpoint is ready.');
       }
     });
   }

@@ -1,15 +1,14 @@
-export interface Brand {
+export interface DocumentType {
   id: number;
   name: string;
   description: string;
-  logo: string;
   state: number;
   created_at: string;
   updated_at: string;
 }
 
-export interface BrandApiResponse {
-  data: Brand[];
+export interface DocumentTypeApiResponse {
+  data: DocumentType[];
   meta: {
     timestamp: string;
     path: string;

@@ -4,10 +4,10 @@ import { PersonService } from '../../services/person.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-person-list-page',
-  templateUrl: './person-list-page.component.html'
+  selector: 'app-person-overview',
+  templateUrl: './person-overview.component.html'
 })
-export class PersonListPageComponent implements OnInit {
+export class PersonOverviewComponent implements OnInit {
 
   constructor(public personService: PersonService, private router: Router) {}
 
