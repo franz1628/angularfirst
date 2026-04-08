@@ -1,0 +1,95 @@
+<div class="registry-card glass-morphism animate-slide-up">
+  <div class="registry-header">
+    <h3 class="registry-title">{{ service ? 'Update Service Details' : 'New Service Registration' }}</h3>
+    <p class="registry-subtitle">Manage your catalog with professional service definitions and pricing.</p>
+  </div>
+
+  <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()" class="registry-form">
+    <div class="form-grid">
+      <!-- Name -->
+      <div class="form-item full-width" [class.error]="f['name'].invalid && f['name'].touched">
+        <label for="name">Service Name</label>
+        <div class="input-container">
+          <input id="name" type="text" formControlName="name" placeholder="e.g. Engine Diagnostic">
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+          </svg>
+        </div>
+        <div class="error-msg" *ngIf="f['name'].hasError('required') && f['name'].touched">The service name is mandatory.</div>
+      </div>
+
+      <!-- Description -->
+      <div class="form-item full-width" [class.error]="f['description'].invalid && f['description'].touched">
+        <label for="description">Detailed Description</label>
+        <textarea id="description" formControlName="description" rows="3" placeholder="Explain what the service covers..."></textarea>
+        <div class="error-msg" *ngIf="f['description'].hasError('required') && f['description'].touched">A description is required.</div>
+      </div>
+
+      <!-- Price and Duration -->
+      <div class="form-item" [class.error]="f['price'].invalid && f['price'].touched">
+        <label for="price">Price ($)</label>
+        <div class="input-container">
+          <input id="price" type="number" formControlName="price" placeholder="0.00">
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <div class="error-msg" *ngIf="f['price'].hasError('required') && f['price'].touched">Price is required.</div>
+        <div class="error-msg" *ngIf="f['price'].hasError('min') && f['price'].touched">Price must be positive.</div>
+      </div>
+
+      <div class="form-item" [class.error]="f['duration_minutes'].invalid && f['duration_minutes'].touched">
+        <label for="duration_minutes">Duration (minutes)</label>
+        <div class="input-container">
+          <input id="duration_minutes" type="number" formControlName="duration_minutes" placeholder="60">
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <div class="error-msg" *ngIf="f['duration_minutes'].hasError('required') && f['duration_minutes'].touched">Duration is required.</div>
+      </div>
+
+      <!-- Photo Upload -->
+      <div class="form-item full-width" [class.error]="f['photo'].invalid && f['photo'].touched">
+        <label>Service Image</label>
+        <div class="upload-container">
+          <div class="photo-preview" [class.empty]="!previewUrl">
+            <img *ngIf="previewUrl" [src]="previewUrl" alt="Service Preview">
+            <div *ngIf="!previewUrl" class="upload-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+              <span>No image selected</span>
+            </div>
+          </div>
+          <div class="upload-controls">
+            <button type="button" class="btn-upload" (click)="fileInput.click()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              {{ selectedFile ? 'Change Photo' : 'Select Photo' }}
+            </button>
+            <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none">
+          </div>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="form-item">
+        <label for="state">Availability</label>
+        <div class="input-container">
+          <select id="state" formControlName="state">
+            <option [ngValue]="1">Available</option>
+            <option [ngValue]="0">Unavailable</option>
+          </select>
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" (click)="cancel.emit()">Discard</button>
+      <button type="submit" class="btn-save" [disabled]="serviceForm.invalid">
+        {{ service ? 'Confirm Update' : 'Initialize Service' }}
+      </button>
+    </div>
+  </form>
+</div>

@@ -35,6 +35,11 @@ const routes: Routes = [
     loadChildren: () => import('./features/document-type/document-type.module').then(m => m.DocumentTypeModule)
   },
   {
+    path: 'service-catalog',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./features/service-catalog/service-catalog.module').then(m => m.ServiceCatalogModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule)
   },
