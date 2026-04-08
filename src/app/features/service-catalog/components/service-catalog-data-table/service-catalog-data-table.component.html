@@ -1,0 +1,65 @@
+<div class="table-card glass-morphism">
+  <div class="table-responsive">
+    <table class="premium-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Service</th>
+          <th>Price</th>
+          <th>Duration</th>
+          <th>Status</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let service of services; trackBy: trackByServiceId" class="animate-fade-in">
+          <td class="id-cell">#{{service.id}}</td>
+          <td>
+            <div class="service-item">
+              <div class="service-photo-small">
+                <img [src]="service.photo | serviceCatalogImage" [alt]="service.name">
+              </div>
+              <div class="service-info">
+                <span class="service-name">{{service.name}}</span>
+                <span class="service-desc">{{service.description}}</span>
+              </div>
+            </div>
+          </td>
+          <td class="price-cell">{{service.price | currency}}</td>
+          <td class="duration-cell">
+            <div class="duration-badge">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>{{service.duration_minutes}} min</span>
+            </div>
+          </td>
+          <td>
+            <span class="badge" [class.active]="service.state === 1" [class.inactive]="service.state !== 1">
+              {{service.state === 1 ? 'Active' : 'Inactive'}}
+            </span>
+          </td>
+          <td class="actions-cell">
+            <div class="action-buttons">
+              <button class="btn-icon edit" (click)="edit.emit(service)" title="Edit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+              </button>
+              <button class="btn-icon delete" (click)="delete.emit(service.id)" title="Delete">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="services?.length === 0 && !loading">
+          <td colspan="6" class="empty-state">
+            <div class="empty-content">
+              <span class="empty-icon">🛠️</span>
+              <p>No services found in the catalog.</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
