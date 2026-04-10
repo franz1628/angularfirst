@@ -1,27 +1,69 @@
-# Angularfirst
+# AngularFirst - Sistema de Gestión Empresarial
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+AngularFirst es una plataforma de gestión moderna y robusta construida con Angular 17, diseñada para ofrecer una experiencia de usuario premium con un enfoque en la reactividad, el diseño limpio y la escalabilidad.
 
-## Development server
+## ✨ Características Principales
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+El sistema está estructurado modularmente para facilitar su mantenimiento y expansión:
 
-## Code scaffolding
+- **🔐 Autenticación**: Sistema completo de inicio de sesión con validación y seguridad.
+- **🏷️ Gestión de Marcas**: Registro y mantenimiento de marcas de vehículos, incluyendo carga de logotipos.
+- **📄 Tipos de Documentos**: Administración dinámicas de formatos y documentos necesarios para el flujo de trabajo.
+- **👥 Gestión de Personas**: Módulo centralizado para el manejo de propietarios y clientes.
+- **🛠️ Catálogo de Servicios**: Gestión integral de servicios ofrecidos por la plataforma.
+- **🎨 Diseño Premium**: Interfaz moderna utilizando las mejores prácticas de UI/UX, componentes reactivos y micro-animaciones.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🚀 Instalación y Configuración
 
-## Build
+### Requisitos Previos
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [Node.js](https://nodejs.org/) (versión 18 o superior recomendada)
+- [Angular CLI](https://github.com/angular/angular-cli) versión 17.0.0
 
-## Running unit tests
+### Pasos para el despliegue local
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. **Clonar el repositorio:**
+   ```bash
+   git clone [url-del-repositorio]
+   cd angularfirst
+   ```
 
-## Running end-to-end tests
+2. **Instalar dependencias:**
+   ```bash
+   npm install
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. **Configurar entorno:**
+   Verifica la configuración del API en `src/environments/environment.ts`. Por defecto, intenta conectarse a `http://localhost:3000`.
 
-## Further help
+4. **Iniciar el servidor de desarrollo:**
+   ```bash
+   npm start
+   ```
+   Navega a `http://localhost:4200/`. La aplicación se recargará automáticamente si cambias algún archivo fuente.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 🛠️ Stack Tecnológico
+
+- **Framework**: Angular 17
+- **Lenguaje**: TypeScript
+- **Estilos**: Vanilla CSS con principios de diseño moderno.
+- **Estado**: RxJS para manejo de flujos asíncronos y estado reactivo.
+- **Utilidades**: UUID para generación de identificadores únicos.
+
+## 📂 Estructura del Proyecto
+
+```text
+src/app/
+├── core/           # Servicios globales, guards e interceptores
+├── shared/         # Componentes, pipes y directivas compartidas
+└── features/       # Módulos funcionales (Login, Brand, Person, etc.)
+```
+
+## 🏗️ Comandos Útiles
+
+- `ng generate component name`: Crea un nuevo componente.
+- `ng build`: Compila el proyecto para producción en la carpeta `dist/`.
+- `ng test`: Ejecuta las pruebas unitarias con Karma.
+
+---
+Desarrollado con ❤️ para ofrecer la mejor experiencia en gestión empresarial.
