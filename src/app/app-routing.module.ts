@@ -40,6 +40,10 @@ const routes: Routes = [
     loadChildren: () => import('./features/service-catalog/service-catalog.module').then(m => m.ServiceCatalogModule)
   },
   {
+    path: 'mecanic',
+    loadChildren: () => import('./features/mecanic/mecanic.module').then(m => m.MecanicModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule)
   },
