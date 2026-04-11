@@ -8,7 +8,14 @@ import { AuthService } from './core/services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  isSidebarCollapsed = false;
+  isMobileMenuOpen = false;
+
   constructor(public authService: AuthService, private router: Router) {}
+
+  toggleSidebar(): void {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  }
 
   logout(): void {
     this.authService.logout();
