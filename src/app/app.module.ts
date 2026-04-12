@@ -9,6 +9,7 @@ import { DesignModule } from './features/design/design.module';
 import { PersonModule } from './features/person/person.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { ResponseInterceptor } from './core/interceptors/response.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,11 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptor,
       multi: true
     }
   ],
