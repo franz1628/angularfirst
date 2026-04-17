@@ -5,15 +5,9 @@ export interface User {
 }
 
 export interface AuthResponse {
-    data: {
-        access_token: string;
-        refresh_token: string;
-        user: User;
-    };
-    meta: {
-        timestamp: string;
-        path: string;
-    };
+    access_token: string;
+    refresh_token: string;
+    user: User;
 }
 
 export interface LoginRequest {
