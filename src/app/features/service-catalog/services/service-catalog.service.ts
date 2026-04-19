@@ -7,7 +7,7 @@ import { environment } from '../../../../environments/environment';
 @Injectable({ providedIn: 'root' })
 export class ServiceCatalogService {
   private apiUrl = `${environment.apiUrl}/service-catalog`;
-  
+
   private servicesSubject = new BehaviorSubject<ServiceCatalog[]>([]);
   public services$: Observable<ServiceCatalog[]> = this.servicesSubject.asObservable();
 
@@ -16,9 +16,7 @@ export class ServiceCatalogService {
   }
 
   public refreshServiceList(): void {
-    this.http.get<ServiceCatalogApiResponse>(this.apiUrl).pipe(
-      map(response => response.data)
-    ).subscribe(services => this.servicesSubject.next(services));
+    this.http.get<ServiceCatalog[]>(this.apiUrl).subscribe(services => this.servicesSubject.next(services));
   }
 
   public getAll(): Observable<ServiceCatalog[]> {

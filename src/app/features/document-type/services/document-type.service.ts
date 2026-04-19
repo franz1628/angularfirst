@@ -7,7 +7,7 @@ import { environment } from '../../../../environments/environment';
 @Injectable({ providedIn: 'root' })
 export class DocumentTypeService {
   private apiUrl = `${environment.apiUrl}/document-type`;
-  
+
   private documentTypesSubject = new BehaviorSubject<DocumentType[]>([]);
   public documentTypes$: Observable<DocumentType[]> = this.documentTypesSubject.asObservable();
 
@@ -16,9 +16,7 @@ export class DocumentTypeService {
   }
 
   public refreshDocumentTypeList(): void {
-    this.http.get<DocumentTypeApiResponse>(this.apiUrl).pipe(
-      map(response => response.data)
-    ).subscribe(documentTypes => this.documentTypesSubject.next(documentTypes));
+    this.http.get<DocumentType[]>(this.apiUrl).subscribe(documentTypes => this.documentTypesSubject.next(documentTypes));
   }
 
   public getAll(): Observable<DocumentType[]> {
