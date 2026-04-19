@@ -16,7 +16,7 @@ export class BrandOverviewComponent implements OnInit {
   constructor(
     private brandService: BrandService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.brandService.refreshBrandList();

@@ -22,7 +22,7 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, request).pipe(
       tap(response => {
         this.saveToLocalStorage(response);
-        this.currentUserSubject.next(response.data.user);
+        this.currentUserSubject.next(response.user);
       })
     );
   }
@@ -38,8 +38,8 @@ export class AuthService {
   }
 
   private saveToLocalStorage(response: AuthResponse): void {
-    localStorage.setItem('currentUser', JSON.stringify(response.data.user));
-    localStorage.setItem('token', response.data.access_token);
+    localStorage.setItem('currentUser', JSON.stringify(response.user));
+    localStorage.setItem('token', response.access_token);
   }
 
   private getUserFromLocalStorage(): User | null {
