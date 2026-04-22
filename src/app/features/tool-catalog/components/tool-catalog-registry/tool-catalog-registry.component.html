@@ -1,0 +1,65 @@
+<form [formGroup]="toolForm" (ngSubmit)="onSubmit()" class="registry-form animate-fade-in">
+  <div class="form-grid">
+    <!-- Photo Section -->
+    <div class="photo-section glass-panel">
+      <div class="section-badge">Visual Identity</div>
+      <div class="photo-upload-container">
+        <div class="preview-box" [class.has-image]="previewUrl">
+          <img *ngIf="previewUrl" [src]="previewUrl" alt="Tool Preview">
+          <div *ngIf="!previewUrl" class="placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a2 2 0 0 1-2.83-2.83l-3.94 3.6ZM4.7 19.3a1 1 0 0 0 0-1.4l-1.6-1.6a1 1 0 0 0-1.4 0l-1.7 1.7a2 2 0 0 0 2.83 2.83l1.87-1.53ZM10.5 10.5l4-4M4.7 14.7l4.3-4.3"></path></svg>
+            <span>No Image Selected</span>
+          </div>
+        </div>
+        <div class="upload-controls">
+          <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" hidden>
+          <button type="button" class="btn-upload" (click)="fileInput.click()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            Choose Tool Photo
+          </button>
+          <p class="upload-hint">SVG, PNG, JPG (max. 2MB)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Section -->
+    <div class="data-section glass-panel">
+      <div class="section-badge">Tool Specifications</div>
+      
+      <div class="form-group" [class.error]="f['name'].invalid && f['name'].touched">
+        <label for="name">Tool Name</label>
+        <div class="input-wrapper">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a2 2 0 0 1-2.83-2.83l-3.94 3.6ZM4.7 19.3a1 1 0 0 0 0-1.4l-1.6-1.6a1 1 0 0 0-1.4 0l-1.7 1.7a2 2 0 0 0 2.83 2.83l1.87-1.53ZM10.5 10.5l4-4M4.7 14.7l4.3-4.3"></path></svg>
+          <input type="text" id="name" formControlName="name" placeholder="e.g. Hydraulic Jack">
+        </div>
+        <div class="error-msg" *ngIf="f['name'].errors?.['required']">Name is required</div>
+        <div class="error-msg" *ngIf="f['name'].errors?.['minlength']">At least 3 characters</div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Technical Description</label>
+        <textarea id="description" formControlName="description" rows="4" placeholder="Detail tool capacity, use cases, and maintenance requirements..."></textarea>
+      </div>
+
+      <div class="status-box">
+        <label>Operational Status</label>
+        <div class="switch-container">
+          <div class="status-option" [class.active]="f['state'].value === 1" (click)="toolForm.patchValue({state: 1})">
+            Active
+          </div>
+          <div class="status-option" [class.active]="f['state'].value === 0" (click)="toolForm.patchValue({state: 0})">
+            Out of Service
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-footer">
+    <button type="button" class="btn-cancel" (click)="cancel.emit()">Cancel</button>
+    <button type="submit" class="btn-submit" [disabled]="toolForm.invalid">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+      {{ tool ? 'Update Tool' : 'Register Tool' }}
+    </button>
+  </div>
+</form>

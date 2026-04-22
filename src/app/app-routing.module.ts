@@ -40,6 +40,11 @@ const routes: Routes = [
     loadChildren: () => import('./features/service-catalog/service-catalog.module').then(m => m.ServiceCatalogModule)
   },
   {
+    path: 'tool-catalog',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./features/tool-catalog/tool-catalog.module').then(m => m.ToolCatalogModule)
+  },
+  {
     path: 'mecanic',
     loadChildren: () => import('./features/mecanic/mecanic.module').then(m => m.MecanicModule)
   },
