@@ -18,7 +18,7 @@ export class BrandEditorPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private brandService: BrandService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -42,8 +42,8 @@ export class BrandEditorPageComponent implements OnInit {
     this.loading = true;
 
     // 1. Handle Logo Upload if exists
-    const upload$ = logoFile 
-      ? this.brandService.uploadLogo(logoFile).pipe(switchMap(res => of(res.logoUrl)))
+    const upload$ = logoFile
+      ? this.brandService.uploadLogo(this.selectedBrand!.id, logoFile).pipe(switchMap(res => of(res.logoUrl)))
       : of(data.logo);
 
     // 2. Cascade to Save

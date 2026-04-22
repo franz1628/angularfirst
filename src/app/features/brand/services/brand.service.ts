@@ -45,9 +45,9 @@ export class BrandService {
     );
   }
 
-  public uploadLogo(file: File): Observable<{ logoUrl: string }> {
+  public uploadLogo(id: number, file: File): Observable<{ logoUrl: string }> {
     const formData = new FormData();
     formData.append('file', file);
-    return this.http.post<{ logoUrl: string }>(`${this.apiUrl}/upload`, formData);
+    return this.http.post<{ logoUrl: string }>(`${this.apiUrl}/${id}/uploadLogo`, formData);
   }
 }
