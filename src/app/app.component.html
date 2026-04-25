@@ -90,4 +90,22 @@
 
   <!-- Mobile Overlay Menu (Optional/Simple implementation) -->
   <div class="mobile-overlay" *ngIf="isMobileMenuOpen" (click)="isMobileMenuOpen = false"></div>
+
+  <!-- Global Dialog -->
+  <app-dialog 
+    *ngIf="dialogService.dialogState$ | async as dialogData"
+    [isOpen]="!!dialogData"
+    [title]="dialogData.title"
+    [showCloseButton]="dialogData.showCloseButton !== false"
+    (close)="dialogService.close()">
+    
+    <!-- Render dynamic component if provided -->
+    <ng-container *ngIf="dialogData.component">
+      <ng-container *ngComponentOutlet="dialogData.component; inputs: dialogData.context"></ng-container>
+    </ng-container>
+    
+    <!-- Render content if no component -->
+    <div *ngIf="!dialogData.component" [innerHTML]="dialogData.template"></div>
+
+  </app-dialog>
 </div>

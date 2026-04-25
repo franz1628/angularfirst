@@ -1,0 +1,14 @@
+<div class="confirm-dialog-content">
+  <div class="message-container">
+    <p class="confirm-message">{{ message }}</p>
+  </div>
+  
+  <div class="confirm-actions">
+    <button *ngIf="showCancelButton" class="btn-cancel" (click)="onCancel()">
+      {{ cancelText }}
+    </button>
+    <button *ngIf="showConfirmButton" class="btn-confirm-elite" (click)="onConfirm()">
+      {{ confirmText }}
+    </button>
+  </div>
+</div>

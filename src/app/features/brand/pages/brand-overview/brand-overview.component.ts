@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Brand } from '../../models/brand.model';
 import { BrandService } from '../../services/brand.service';
+import { DialogService } from '../../../../shared/ui/dialog/dialog.service';
+import { DialogComponent } from '../../../../shared/ui/dialog/dialog.component';
 
 @Component({
   selector: 'app-brand-overview',
@@ -15,7 +17,8 @@ export class BrandOverviewComponent implements OnInit {
 
   constructor(
     private brandService: BrandService,
-    private router: Router
+    private router: Router,
+    private dialogService: DialogService
   ) { }
 
   ngOnInit(): void {
@@ -31,8 +34,10 @@ export class BrandOverviewComponent implements OnInit {
   }
 
   onDelete(id: number): void {
-    if (confirm('Are you sure you want to de-list this manufacturer? This action is permanent.')) {
-      this.brandService.delete(id).subscribe();
-    }
+    this.dialogService.confirm(
+      'Are you sure you want to de-list this manufacturer? This action is permanent.',
+      'Confirm',
+      () => this.brandService.delete(id)
+    );
   }
 }
