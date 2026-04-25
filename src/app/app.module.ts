@@ -10,6 +10,7 @@ import { PersonModule } from './features/person/person.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { ResponseInterceptor } from './core/interceptors/response.interceptor';
+import { DialogModule } from './shared/ui/dialog/dialog.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ResponseInterceptor } from './core/interceptors/response.interceptor';
     BrandModule,
     DesignModule,
     PersonModule,
-    HttpClientModule
+    HttpClientModule,
+    DialogModule
   ],
   providers: [
     {
