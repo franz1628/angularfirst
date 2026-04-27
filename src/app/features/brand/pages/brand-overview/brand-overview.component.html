@@ -6,7 +6,10 @@
     </div>
     <div class="header-actions">
       <button class="btn-primary-elite" (click)="onAdd()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
         Register New Brand
       </button>
     </div>
@@ -18,20 +21,21 @@
         <h2 class="section-title">Manufacturer Inventory</h2>
         <div class="status-indicators">
           <span class="status-item">
-            <span class="dot active"></span> 
+            <span class="dot active"></span>
             Syncing Live
           </span>
-          <span class="status-item" *ngIf="brands$ | async as brands">
-            <span class="count">{{brands.length}}</span> 
+          <span class="status-item" *ngIf="getBrands | async as brands">
+            <span class="count">{{brands.length}}</span>
             Total Entries
           </span>
         </div>
       </div>
 
-      <app-brand-data-table 
-        [brands]="brands$ | async" 
-        [loading]="loading"
-        (edit)="onEdit($event)" 
+      <div class="search-container">
+        <input type="text" [value]="searchTerm" (input)="onSearch($event.target.value)" placeholder="Search" />
+      </div>
+
+      <app-brand-data-table [brands]="getBrands | async" [loading]="loading" (edit)="onEdit($event)"
         (delete)="onDelete($event)">
       </app-brand-data-table>
     </section>

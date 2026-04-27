@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Brand } from '../../models/brand.model';
 import { BrandService } from '../../services/brand.service';
 import { DialogService } from '../../../../shared/ui/dialog/dialog.service';
@@ -14,6 +14,7 @@ import { DialogComponent } from '../../../../shared/ui/dialog/dialog.component';
 export class BrandOverviewComponent implements OnInit {
   brands$: Observable<Brand[]> = this.brandService.brands$;
   loading = false;
+  searchTerm: string = '';
 
   constructor(
     private brandService: BrandService,
@@ -23,6 +24,12 @@ export class BrandOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.brandService.refreshBrandList();
+  }
+
+  get getBrands() {
+    return this.brands$.pipe(
+      map(brands => brands.filter(brand => brand.name.toLowerCase().includes(this.searchTerm.toLowerCase())))
+    );
   }
 
   onAdd(): void {
@@ -39,5 +46,9 @@ export class BrandOverviewComponent implements OnInit {
       'Confirm',
       () => this.brandService.delete(id)
     );
+  }
+
+  onSearch(value: string): void {
+    this.searchTerm = value;
   }
 }
