@@ -1,69 +1,74 @@
-# AngularFirst - Sistema de Gestión Empresarial
+# 🚀 AngularFirst - Enterprise Management System
 
-AngularFirst es una plataforma de gestión moderna y robusta construida con Angular 17, diseñada para ofrecer una experiencia de usuario premium con un enfoque en la reactividad, el diseño limpio y la escalabilidad.
+AngularFirst is a modern, robust management platform built with **Angular 17**, designed to deliver a premium user experience with a focus on reactivity, clean design, and high scalability.
 
-## ✨ Características Principales
+---
 
-El sistema está estructurado modularmente para facilitar su mantenimiento y expansión:
+## ✨ Key Features
 
-- **🔐 Autenticación**: Sistema completo de inicio de sesión con validación y seguridad.
-- **🏷️ Gestión de Marcas**: Registro y mantenimiento de marcas de vehículos, incluyendo carga de logotipos.
-- **📄 Tipos de Documentos**: Administración dinámicas de formatos y documentos necesarios para el flujo de trabajo.
-- **👥 Gestión de Personas**: Módulo centralizado para el manejo de propietarios y clientes.
-- **🛠️ Catálogo de Servicios**: Gestión integral de servicios ofrecidos por la plataforma.
-- **🎨 Diseño Premium**: Interfaz moderna utilizando las mejores prácticas de UI/UX, componentes reactivos y micro-animaciones.
+The system is architected with a modular approach to ensure ease of maintenance and rapid expansion:
 
-## 🚀 Instalación y Configuración
+- **🔐 Secure Authentication**: Comprehensive login system with robust validation and security protocols.
+- **🏷️ Brand Management**: Complete lifecycle management for vehicle brands, including high-resolution logo uploads.
+- **🛠️ Service & Tool Catalog**: Integrated modules for managing service offerings and technical tool inventories with ease.
+- **👥 Personnel Management**: Centralized hub for managing owners, clients, and mechanics.
+- **📄 Dynamic Documentation**: Scalable administration of document types and workflow-critical formats.
+- **🎨 Premium UI/UX**: State-of-the-art interface featuring glassmorphism, smooth micro-animations, and a curated design system.
 
-### Requisitos Previos
+## 📂 Project Structure
 
-- [Node.js](https://nodejs.org/) (versión 18 o superior recomendada)
-- [Angular CLI](https://github.com/angular/angular-cli) versión 17.0.0
+Following Angular best practices, the project is organized into three main layers:
 
-### Pasos para el despliegue local
+```text
+src/app/
+├── core/           # Singleton services, global guards, and HTTP interceptors.
+├── shared/         # Reusable components, pipes, directives, and UI models.
+└── features/       # Functional modules (Login, Brand, Mecanic, Tool Catalog, etc.)
+```
 
-1. **Clonar el repositorio:**
+## 🛠️ Tech Stack
+
+- **Framework**: [Angular 17](https://angular.dev/)
+- **State Management**: [RxJS](https://rxjs.dev/) for asynchronous data streams and reactive state.
+- **Styling**: Modern Vanilla CSS with CSS Variables for a flexible design system.
+- **Utilities**: `UUID` for unique identifier generation.
+- **Testing**: Jasmine & Karma for robust unit testing.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- [Angular CLI](https://github.com/angular/angular-cli) v17.0.0+
+
+### Local Deployment
+
+1. **Clone the repository:**
    ```bash
-   git clone [url-del-repositorio]
+   git clone [repository-url]
    cd angularfirst
    ```
 
-2. **Instalar dependencias:**
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Configurar entorno:**
-   Verifica la configuración del API en `src/environments/environment.ts`. Por defecto, intenta conectarse a `http://localhost:3000`.
+3. **Configure Environment:**
+   Ensure the API configuration in `src/environments/environment.ts` matches your backend. By default, it connects to `http://localhost:3000`.
 
-4. **Iniciar el servidor de desarrollo:**
+4. **Launch Development Server:**
    ```bash
    npm start
    ```
-   Navega a `http://localhost:4200/`. La aplicación se recargará automáticamente si cambias algún archivo fuente.
+   Access the application at `http://localhost:4200/`. The app will automatically reload on source changes.
 
-## 🛠️ Stack Tecnológico
+## 🏗️ Development Commands
 
-- **Framework**: Angular 17
-- **Lenguaje**: TypeScript
-- **Estilos**: Vanilla CSS con principios de diseño moderno.
-- **Estado**: RxJS para manejo de flujos asíncronos y estado reactivo.
-- **Utilidades**: UUID para generación de identificadores únicos.
-
-## 📂 Estructura del Proyecto
-
-```text
-src/app/
-├── core/           # Servicios globales, guards e interceptores
-├── shared/         # Componentes, pipes y directivas compartidas
-└── features/       # Módulos funcionales (Login, Brand, Person, etc.)
-```
-
-## 🏗️ Comandos Útiles
-
-- `ng generate component name`: Crea un nuevo componente.
-- `ng build`: Compila el proyecto para producción en la carpeta `dist/`.
-- `ng test`: Ejecuta las pruebas unitarias con Karma.
+- `ng generate component <name>`: Scaffold a new component.
+- `ng build`: Compile the project into the `dist/` directory for production.
+- `ng test`: Execute unit tests via Karma.
 
 ---
-Desarrollado con ❤️ para ofrecer la mejor experiencia en gestión empresarial.
+
+Built with ❤️ for a superior enterprise management experience.
