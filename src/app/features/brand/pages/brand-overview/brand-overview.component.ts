@@ -48,7 +48,7 @@ export class BrandOverviewComponent implements OnInit {
     );
   }
 
-  onSearch(value: string): void {
-    this.searchTerm = value;
+  onSearch(event: Event): void {
+    this.searchTerm = (event.target as HTMLInputElement).value;
   }
 }

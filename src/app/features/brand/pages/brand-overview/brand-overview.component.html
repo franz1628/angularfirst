@@ -32,7 +32,7 @@
       </div>
 
       <div class="search-container">
-        <input type="text" [value]="searchTerm" (input)="onSearch($event.target.value)" placeholder="Search" />
+        <input type="text" class="form-control" [value]="searchTerm" (input)="onSearch($event)" placeholder="Search" />
       </div>
 
       <app-brand-data-table [brands]="getBrands | async" [loading]="loading" (edit)="onEdit($event)"
