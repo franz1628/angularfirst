@@ -1,0 +1,23 @@
+<div class="page-container animate-fade-in">
+  <div class="page-header">
+    <button class="btn-back" (click)="onCancel()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span>Back to List</span>
+    </button>
+  </div>
+
+  <div class="editor-content">
+    <app-seller-registry
+      [seller]="selectedSeller"
+      (save)="onSave($event)"
+      (cancel)="onCancel()">
+    </app-seller-registry>
+  </div>
+</div>
+
+<div *ngIf="loading" class="loading-overlay">
+  <div class="spinner"></div>
+</div>

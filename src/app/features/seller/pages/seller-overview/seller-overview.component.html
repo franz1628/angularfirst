@@ -1,0 +1,19 @@
+<div class="hero-section">
+  <h1 class="hero-title">Elite Sellers</h1>
+  <p class="hero-subtitle">Manage your expert sales team and professional profiles.</p>
+</div>
+
+<div class="glass-card">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="mb-0">Registered Sellers</h3>
+    <div class="d-flex align-items-center gap-3">
+      <span class="badge rounded-pill bg-light text-primary px-3 py-2 border">Total: {{(sellers$ | async)?.length || 0}}</span>
+      <button class="btn btn-primary-elite" (click)="onAdd()">
+        + Register New Seller
+      </button>
+    </div>
+  </div>
+
+  <app-seller-data-table [sellers]="(sellers$ | async) || []" (edit)="onEdit($event)" (delete)="onDelete($event)">
+  </app-seller-data-table>
+</div>

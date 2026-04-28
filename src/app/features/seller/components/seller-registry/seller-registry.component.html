@@ -1,0 +1,108 @@
+<div class="registry-card glass-morphism">
+  <div class="card-header">
+    <h3 class="card-title">{{ seller ? 'Edit Seller' : 'Register New Seller' }}</h3>
+    <p class="card-subtitle">Complete the information below to {{ seller ? 'update' : 'create' }} the seller profile.</p>
+  </div>
+
+  <form [formGroup]="sellerForm" (ngSubmit)="onSubmit()" class="premium-form">
+    <div class="form-section">
+      <h4 class="section-title">Personal Information</h4>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label class="form-label">First Name</label>
+          <input type="text" formControlName="name" class="form-input" placeholder="e.g. Robert"
+            [class.invalid]="f['name'].touched && f['name'].errors">
+          <div *ngIf="f['name'].touched && f['name'].errors" class="error-msg">Name is required (min 3 chars).</div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Last Name</label>
+          <input type="text" formControlName="last_name" class="form-input" placeholder="e.g. Smith"
+            [class.invalid]="f['last_name'].touched && f['last_name'].errors">
+          <div *ngIf="f['last_name'].touched && f['last_name'].errors" class="error-msg">Last name is required.</div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Second Last Name <span class="optional">(Optional)</span></label>
+          <input type="text" formControlName="second_last_name" class="form-input" placeholder="e.g. Johnson">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Email Address</label>
+          <input type="email" formControlName="email" class="form-input" placeholder="robert.smith@elite.com"
+            [class.invalid]="f['email'].touched && f['email'].errors">
+          <div *ngIf="f['email'].touched && f['email'].errors" class="error-msg">Valid email is required.</div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Password {{ seller ? '(Leave blank to keep current)' : '' }}</label>
+          <input type="password" formControlName="password" class="form-input" placeholder="••••••••"
+            [class.invalid]="f['password'].touched && f['password'].errors">
+          <div *ngIf="f['password'].touched && f['password'].errors" class="error-msg">Password is required (min 6 chars).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h4 class="section-title">Identification & Contact</h4>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Document Type</label>
+          <select formControlName="id_document_type" class="form-select"
+            [class.invalid]="f['id_document_type'].touched && f['id_document_type'].errors">
+            <option [ngValue]="null">Select document type...</option>
+            <option *ngFor="let type of documentTypes" [value]="type.id">{{type.name}}</option>
+          </select>
+          <div *ngIf="f['id_document_type'].touched && f['id_document_type'].errors" class="error-msg">Document type is required.</div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Document Number</label>
+          <input type="text" formControlName="number_document" class="form-input" placeholder="e.g. 123456789"
+            [class.invalid]="f['number_document'].touched && f['number_document'].errors">
+          <div *ngIf="f['number_document'].touched && f['number_document'].errors" class="error-msg">Document number is required.</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Phone Number</label>
+          <input type="text" formControlName="phone" class="form-input" placeholder="e.g. +1 555-0101">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Birth Date</label>
+          <input type="date" formControlName="birth_date" class="form-input">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Residence Address</label>
+        <textarea formControlName="address" class="form-input" rows="2" placeholder="Street, City, Country..."></textarea>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h4 class="section-title">Additional Info</h4>
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <label class="form-label">Photo URL</label>
+          <input type="text" formControlName="photo" class="form-input" placeholder="https://example.com/photo.jpg">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-check form-switch custom-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="stateSwitch"
+          [checked]="f['state'].value === 1" 
+          (change)="sellerForm.patchValue({state: $any($event.target).checked ? 1 : 0})">
+        <label class="form-check-label" for="stateSwitch">Profile is currently active and available</label>
+      </div>
+    </div>
+
+    <div class="form-actions mt-4">
+      <button type="button" class="btn-cancel" (click)="cancel.emit()">Discard Changes</button>
+      <button type="submit" class="btn-save" [disabled]="sellerForm.invalid">
+        {{ seller ? 'Update Seller' : 'Register Seller' }}
+      </button>
+    </div>
+  </form>
+</div>
